@@ -1,0 +1,233 @@
+<!-- Menu superior -->
+<nav class="navbar navbar-expand-lg navbar-dark coca-navbar" [ngClass]="{'dark-mode': isDarkMode, 'coca-navbar': !isDarkMode}">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand" href="/">
+        <img src="assets/logo.svg" alt="Logo" class="logo" >
+      </a>
+     <div> <p class="text-white mb-0 d-none d-md-block" style="font-weight: 700; line-height: 1.5;"> {{ 'title' | translate }}</p></div>
+    </div>
+    <p class="d-block d-md-none text-white position-absolute top-50 start-50 translate-middle"  style="font-weight: 700; line-height: 1.5;">Hola Ricardo</p>
+    <button id="toggleSidebar" class="btn d-block d-sm-none text-white" >
+      <i class="fas fa-bars" ></i>
+    </button>
+
+    <button class="btn d-block d-sm-none text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Menú Offcanvas -->
+    <div class="d-block d-sm-none offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">{{ 'labelMenu' | translate }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="list-unstyled">
+          <li><a  data-bs-toggle="modal" data-bs-target="#mdPerfil" class="text-decoration-none"><i class="fa-regular fa-circle-user"></i>  {{ 'perfil' | translate }}</a></li>
+          <li><a  data-bs-toggle="modal" data-bs-target="#mdConfiguration" class="text-decoration-none"><i class="fa-solid fa-gear"></i> {{ 'configuracion' | translate }}</a></li>
+          <li><a  (click)="navigateToHome()" class="text-decoration-none"><i class="fas fa-home"></i>  {{ 'labelInicio' | translate }}</a></li>
+          <li><a routerLink="/RH" class="text-decoration-none"><i class="fa-solid fa-users-gear"></i>  {{ 'labelGR' | translate }}</a></li>
+          <li><a href="#" class="text-decoration-none"><i class="fa-solid fa-chart-simple"></i>  {{ 'labelBI' | translate }}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Barra de búsqueda centrada (opcional) -->
+      <!-- <form class="d-flex mx-auto search-bar">
+        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
+        <button class="btn btn-outline-light" type="submit">Buscar</button>
+      </form> -->
+
+      <!-- Iconos alineados a la derecha -->
+      <div class="d-flex align-items-center ms-auto">
+        <!-- Idioma -->
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-link nav-link dropdown-toggle text-white" id="languageDropdown" ngbDropdownToggle ngbTooltip="{{ 'btnIdioma' | translate }}">
+            <img src="assets/flags/us.png" alt="English" class="flag-icon img-rounded" > <!-- Bandera de inglés -->
+          </button>
+          <div ngbDropdownMenu aria-labelledby="languageDropdown">
+            <button ngbDropdownItem (click)="switchLanguage('es')" >
+              <img src="assets/flags/es.png" alt="Spanish" class="flag-icon"> {{ 'SPANISH' | translate }}
+            </button>
+            <button ngbDropdownItem (click)="switchLanguage('en')">
+              <img src="assets/flags/us.png" alt="English" class="flag-icon"> {{ 'ENGLISH' | translate }}
+            </button>
+          </div>
+        </div>
+        <!-- Modo Claro/Oscuro -->
+        <a  class="nav-link text-white"  (click)="toggleDarkMode()" ngbTooltip="{{ 'btnModo' | translate }}">
+          <i class="fa-regular" [ngClass]="{'fa-moon': !isDarkMode, 'fa-sun': isDarkMode}"></i>
+        </a>
+        <!-- Notificaciones -->
+        <a href="#" class="nav-link text-white position-relative"  ngbTooltip="{{ 'btnNotificacion' | translate }}">
+          <i class="fa-regular fa-bell"></i>
+          <span class="position-absolute top-10 start-60 translate-middle p-2 border border-white border-2 dot-green rounded-circle">
+            <span class="visually-hidden">Nuevas alertas</span>
+          </span>
+        </a>
+        <!-- Ayuda -->
+        <a href="#" class="nav-link text-white" ngbTooltip="{{ 'btnayuda' | translate }}">
+          <i class="fa-regular fa-circle-question"></i>
+        </a>
+        <!-- Menú de Usuario -->
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ 'saludo' | translate }} Ricardo Zerpa <i class="fa-regular fa-circle-user"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#mdPerfil"><i class="fa-regular fa-circle-user"></i> {{ 'perfil' | translate }} </a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#mdConfiguration"><i class="fa-solid fa-gear"></i> {{ 'configuracion' | translate }} </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i>  {{ 'btnSalir' | translate }}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal de Perfil -->
+<div class="modal fade" id="mdPerfil" tabindex="-1" aria-labelledby="mdPerfil" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header ">
+		  <h5 class="modal-title" id="confirmDeleteLabel">{{ 'labelPerfil' | translate }}</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+		</div>
+		<div class="modal-body">
+			<form>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Nombre para mostrar -->
+            <div class="mb-3">
+              <label for="fullName" class="form-label">{{ 'labelNVisu' | translate }}</label>
+              <input type="text" id="fullName" class="form-control">
+            </div>
+            <!-- Nombre Completo -->
+            <div class="mb-3">
+              <label for="fullName" class="form-label">{{ 'labelNombre' | translate }}</label>
+              <input type="text" id="fullName" class="form-control">
+              <small>Debe tener al menos 2 caracteres</small>
+            </div>
+            <!-- apellido -->
+            <div class="mb-3">
+              <label for="fullName" class="form-label">{{ 'labelApellido' | translate }}</label>
+              <input type="text" id="fullName" class="form-control">
+            </div>
+             <!-- Email -->
+          <div class="mb-3">
+            <label for="region" class="form-label">{{ 'labelEmail' | translate }}</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+              <input type="text" id="email" class="form-control">
+             </div>
+          </div>
+            <!-- pais -->
+            <div class="mb-3">
+              <label for="zona" class="form-label">{{ 'labelPais' | translate }}</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-globe"></i></span>
+                <select class="form-control">
+                  <option value="es">Latinoamérica</option>
+                  <option value="en">United States</option>
+                </select>
+                </div>
+            </div>
+          </div>
+          </div>
+      </form>
+		</div>
+    <!-- Modal botones -->
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-block btn-outline-secondary d-inline-flex align-items-center justify-content-center">
+				{{ 'btnCancelar' | translate }}
+			  </button>
+			<button type="button" class="btn btn-red-femsa" >{{ 'btnGuardar' | translate }}</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+<!-- Modal de Configuracion -->
+<div class="modal fade" id="mdConfiguration" tabindex="-1" aria-labelledby="mdConfiguration" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+      <div class="modal-header ">
+        <h5 class="modal-title" id="confirmDeleteLabel">{{ 'mdTituloConfiguracion' | translate }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-dm-12">
+              <!-- pais -->
+              <div class="mb-3">
+                <label for="zona" class="form-label">{{ 'labelIdioma' | translate }}</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa-solid fa-globe"></i></span>
+                  <select class="form-control">
+                    <option value="es">Español</option>
+                    <option value="en">Enfglish</option>
+                    <option value="en">Portugues</option>
+                  </select>
+                  </div>
+                
+              </div>
+              <div class="mb-3">
+                <label for="zona" class="form-label">{{ 'labelcontra' | translate }}</label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input 
+                    placeholder="*****" 
+                    class="form-control"
+                  
+                  >
+                </div>
+                <small>{{ 'helplabelcontra' | translate }}</small>
+              </div>
+              <div class="mb-3">
+                <label for="zona" class="form-label">{{ 'labelNewcontra' | translate }}</label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input 
+                    placeholder="{{ 'placeNewContra' | translate }}" 
+                    class="form-control"
+                  
+                  >
+                </div>
+                <small>{{ 'helplabelNewcontra' | translate }}</small>
+              </div>
+              <div class="mb-3">
+                <label for="zona" class="form-label">{{ 'labelConfContra' | translate }}</label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input 
+                    placeholder="{{ 'placeLabelConfContra' | translate }}" 
+                    class="form-control"
+                  
+                  >
+                </div>
+                <small>{{ 'helplabelConfContra' | translate }}</small>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- botones modal de Configuracion -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-block btn-outline-secondary d-inline-flex align-items-center justify-content-center">
+          {{ 'btnCancelar' | translate }}
+          </button>
+        <button type="button" class="btn btn-red-femsa" >	{{ 'btnGuardar' | translate }}</button>
+      </div>
+	  </div>
+	</div>
+</div>
+

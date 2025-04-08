@@ -1,0 +1,131 @@
+
+
+<div class="login-page">
+  <div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="row justify-content-center w-100">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="row">
+            <!-- Columna para el formulario -->
+            <div class="col-md-6 p-4">
+              <div class="mt-4 text-center">
+                <img src="assets/logo.svg" alt="femsa-logo" width="100">
+              </div>
+
+             
+
+              <div class="card-body">
+                 <!-- Formulario condicional -->
+              <h1 class="text-center">
+                {{ isRecoveringPassword ? 'Recuperar Contraseña' : 'Iniciar Sesión' }}
+              </h1>
+                <form *ngIf="!isRecoveringPassword; else recoverPasswordForm">
+                  <div class="form-group mb-3">
+                    <label for="validationDefaultUsername" class="form-label mb-1">Nombre de usuario</label>
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <i class="fa-solid fa-user"></i>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Nombre de usuario" id="validationDefaultUsername">
+                    </div>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label for="validationDefaultcontra" class="form-label mb-1">Contraseña</label>
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <i class="fa-solid fa-lock"></i>
+                      </span>
+                      <input 
+                        [type]="showPassword ? 'text' : 'password'" 
+                        placeholder="Introduzca su contraseña" 
+                        class="form-control"
+                        id="validationDefaultcontra"
+                      >
+                      <span class="input-group-text toggle-password" (click)="togglePassword()">
+                        <i class="fa-solid" [ngClass]="showPassword ? 'fa-eye' : 'fa-eye-slash'"></i>
+                      </span>
+                    </div>
+
+                    <div class="text-end pt-2">
+                      <a href="javascript:void(0);" class="registrarse-link" (click)="toggleRecoverPassword()">¿Olvidaste tu contraseña?</a>
+                    </div>
+                  </div>
+
+                  <div class="mb-3 d-flex justify-content-between align-items-center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="invalidCheck2">
+                      <label class="form-check-label" for="invalidCheck2">
+                        Recordar Contraseña
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mb-3 d-flex justify-content-between align-items-center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="invalidCheck3">
+                      <label class="form-check-label" for="invalidCheck3">
+                        Acepto los <a href="https://www.powerfleet.com/privacy-policy/" class="registrarse-link" >Términos y Condiciones</a>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="d-grid gap-2">
+                    <button type="button" (click)="navigateToHome()"  class="btn btn-block" style="background-color: #F40009; color: white;">
+                      Iniciar Sesión
+                    </button>
+                  </div>
+
+                  <!-- <div class="text-center mt-3">
+                    <span>¿No tienes una cuenta?</span>
+                    <a href="#" class="registrarse-link"> Registrarse</a>
+                  </div> -->
+
+                  <div class="input-group mt-3">
+                    <span class="input-group-text"><i class="fa-solid fa-globe"></i></span>
+                    <select class="form-control">
+                      <option value="es">Latinoamérica (Español)</option>
+                      <option value="en">United States (English)</option>
+                    </select>
+                  </div>
+                </form>
+
+                <!-- Formulario de recuperación de contraseña -->
+                <ng-template #recoverPasswordForm>
+                  
+                  <div class="form-group mb-3">
+                    <label for="emailRecovery" class="form-label mb-1">Correo Electrónico</label>
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <i class="fa-solid fa-envelope"></i>
+                      </span>
+                      <input type="email" class="form-control" placeholder="Introduce tu correo electrónico" id="emailRecovery">
+                    </div>
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-block" style="background-color: #F40009; color: white;">
+                      Recuperar Contraseña
+                    </button>
+                  </div>
+                  
+                  <!-- <div class="text-center mt-3"  >
+                    <a href="javascript:void(0);" (click)="toggleRecoverPassword()" class="registrarse-link"><i class="fa-solid fa-arrow-left"></i> Volver al inicio de sesión</a>
+                  </div> -->
+                  <div class="text-center mt-3 d-grid gap-2">
+                    <button type="button" class="btn btn-block btn-outline-danger text-danger d-inline-flex align-items-center justify-content-center" (click)="toggleRecoverPassword()" style="border-color: #F40009;">
+                      <i class="fa-solid fa-arrow-left"></i> Volver al inicio de sesión
+                    </button>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+            <!-- Columna para la imagen y título -->
+            <div class="col-md-6 d-none d-md-flex flex-column align-items-center justify-content-center text-center bg-image2">
+              <h2 class="text-white">Bienvenido</h2>
+              <p class="text-white px-4">Torre de Control de Conductores</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

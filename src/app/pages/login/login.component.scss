@@ -1,0 +1,103 @@
+
+.btn-block:hover {
+    background-color: #C80005; /* Ajusta el color de hover según tus preferencias */
+  }
+
+/* Elimina el subrayado y cambia el color del enlace */
+.registrarse-link {
+  text-decoration: none;  /* Quita el subrayado */
+  color: #C80005;         /* Cambia el color a rojo */
+  margin-top: 0px;
+  line-height: 1.2; /* Ajusta el alto de línea si es necesario */
+}
+
+.registrarse-link:hover {
+  text-decoration: underline;  /* Opción para agregar subrayado al pasar el cursor (si lo deseas) */
+}
+
+label {
+  margin-bottom: 0.25rem;  /* 4px */
+  font-size: 1rem;         /* 16px */
+  // font-weight: 600;
+}
+
+.form-check-input:checked {
+  background-color: #F40009;
+  border-color: #F40009;
+}
+
+.form-check-input:focus {
+  border-color: #F40009;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(244, 0, 9, 0.25)
+}
+
+.shadown{
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estado normal */
+.form-control {
+  background-color: #FFF;
+  border: 1px solid #ddd;
+}
+
+/* Estado de foco */
+.form-control:focus {
+  border-color: #F40009;
+  box-shadow: 0 0 0 0.25rem rgba(244, 0, 9, 0.25);
+}
+
+/* Estado válido */
+#validationDefaultUsername:valid, 
+#validationDefaultcontra:valid {
+  background-color: #F8F9FA;
+}
+
+/* Estado inválido */
+.form-control:invalid {
+  border-color: #FF0000;
+  background-color: #FFD1D1;
+}
+
+/* Estado con autofill */
+input:-webkit-autofill {
+  background-color: #F8F9FA !important;
+  color: #333;
+}
+
+/* Estado con texto (cuando el input tiene algo escrito) */
+.form-control:not(:placeholder-shown) {
+  background-color: #F8F9FA
+}
+
+/* Estilo del botón de inicio de sesión */
+.btn-block:hover {
+  background-color: #C80005;
+  border-color: #C80005;
+}
+
+.input-group-text i {
+  color: #666666;  /* Cambia el color del icono */
+}
+
+.bg-image2 {
+  background: url('/assets/login_img.jpg') no-repeat center center;
+  background-size: cover; /* Ajusta la imagen para cubrir toda la columna */
+  color: white; /* Asegura que el texto sea legible sobre la imagen */
+  padding: 40px;
+}
+
+.toggle-password {
+  cursor: pointer;
+}
+
+.btn-outline-danger {
+  color: #F40009;
+  border-color: #F40009;
+}
+
+.btn-outline-danger:hover {
+  background-color: #F40009;
+  color: white !important;
+}

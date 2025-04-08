@@ -1,0 +1,171 @@
+
+
+<div class="container no-margin-xs h-100 d-flex justify-content-center align-items-center" style="background-color: #FAFAFA;" >
+    <div class="row justify-content-center align-items-center w-100" style="height: 100vh;">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 px-0">
+            <div class="mx-auto">
+                <div class="card-header pt-4 pb-4">
+                    <img src="assets/img-operador-removebg-preview.png"  alt="Foto del operador" class="profile-img mt-3">
+                    <div>
+                        <div class="mb-3 mt-3 d-flex flex-column">
+                            <h6 class="mb-0 fs-5  fs-sm-3 fs-md-4 fs-lg-5 fs-xl-6"><b>{{ driverData[0]?.['Nombre del colaborador'] }}</b></h6>
+                            <small class="text-white fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">Nombre del colaborador</small>
+                        </div>
+                    
+                        <div class="d-flex flex-column">
+                            <h6 class="mb-0 fs-lg-5 fs-sm-3 fs-md-4 fs-lg-5 fs-xl-6">{{ driverData[0]?.['Id del colaborador'] }}</h6>
+                            <small class="text-white fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">{{ driverData[0]?.['Unidad operativa'] }}</small>
+                        </div>
+                    </div>
+                  
+                </div>
+                <div class="card-body px-0">
+                    <div class="row px-2" style="margin-top: -15px;">
+                        <div class="col-6 ">
+                          <div class="card d-flex flex-column text-center">
+                            <small class="c-red fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">Liga</small> 
+                            <span class="fs-5 fs-sm-3 fs-md-4 fs-lg-5 fs-xl-6"><b>{{ driverData[0]?.['Liga'] }}</b></span>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="card d-flex flex-column text-center">
+                            <small  class="c-red fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">Certificación</small> 
+                            <span class="text-success fs-5 fs-sm-3 fs-md-4 fs-lg-5 fs-xl-6"><b>{{ driverData[0]?.['Certificación'] }}</b></span>
+                          </div>
+                        </div>
+                    </div>
+                  <div class="row gy-3 pb-4" >
+                    <div class="col-xs-12 col-md-12 col-lg-6">
+                        <div class="card kardex container mt-3 h-100 pt-4">
+                            <h6 class="text-muted text-center mb-3 fs-5 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">Kardex del operador</h6>
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="d-flex flex-column mb-3">
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6 text-nowrap"><b>Última certificación</b></small> 
+                                        <span class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">{{ driverData[0]?.['Última certificación'] }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <div class="d-flex flex-column mb-3">
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6 text-nowrap"><b>Vencimiento certificación</b></small> 
+                                        <span class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6" >{{ driverData[0]?.['Vencimiento certificación'] }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column mb-3">
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6"><b>Tipo de vehículo en el que está certificado</b></small> 
+                                        <span class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">{{ driverData[0]?.['Tipo de vehículo'] }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="d-flex flex-column mb-3">
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6"><b>Licencia</b></small> 
+                                        <span class="text-success f-2 fs-5 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6"><b>{{ driverData[0]?.['Tipo de licencia'] }}</b></span>
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6"> TIPO</small>
+                                    </div>
+                                   
+                                </div>
+                                <div class="col-7">
+                                   
+                                    <div class="d-flex flex-column mb-3">
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6"><b>Número de Licencia</b></small> 
+                                        <span class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">{{ driverData[0]?.['Licencia'] }}</span>
+                                    </div>
+                                   
+                                </div>
+                                <div class="col-5">
+                                    <div class="d-flex flex-column mb-3">
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6"><b>Vigencia Licencia</b></small> 
+                                        <span class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">{{ driverData[0]?.['Vigencia licencia'] }}</span>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-7">
+                                    <div class="d-flex flex-column mb-3">
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6"><b>Vencimiento Licencia</b></small> 
+                                        <span class="text-danger fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">{{ driverData[0]?.['Vencimiento licencia'] }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 col-lg-6">
+                        <div class="card kardex container mt-3 h-100 pt-4">
+                            <h6 class="text-muted text-center fs-5 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">Criterios liga</h6>
+                            <div class="row">
+                                <!-- Safety Score -->
+                                <div class="col-12 d-flex align-items-center mb-3">
+                                    <span class="text-success fs-3 fw-bold me-3 score-number ">{{ driverData[0]?.['Safety Score'] }}</span>
+                                    <div>
+                                        <b class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">Safety score</b><br>
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">{{ driverData[0]?.['Safety Score Descripcion'] }}</small>
+                                    </div>
+                                </div>
+                        
+                                <!-- Siniestros -->
+                                <div class="col-12 d-flex align-items-center mb-3">
+                                    <span class="text-success  fs-3 fw-bold me-3 score-number ">{{ driverData[0]?.['Siniestros'] }}</span>
+                                    <div>
+                                        <b class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">Siniestros</b><br>
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">Sin accidentes en los últimos 6 meses</small>
+                                    </div>
+                                </div>
+                        
+                                <!-- Calificación certificación -->
+                                <div class="col-12 d-flex align-items-center">
+                                    <span class="text-success  fs-3 fw-bold me-3 score-number ">{{ driverData[0]?.['Calificación'] }}</span>
+                                    <div>
+                                        <b class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">Calificación certificación</b><br>
+                                        <small class="fs-6 fs-sm-6 fs-md-6 fs-lg-6 fs-xl-6">{{ driverData[0]?.['Calificación descripción'] }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-md-4 col-xs-12">
+            <div class="card mx-auto " style="max-width: 400px;">
+                <div class="card-header">
+                    <img src="assets/img-operador-removebg-preview.png"  alt="Foto del operador" class="profile-img">
+                    <div>
+                        <div class="mb-3 d-flex flex-column">
+                            <h6 class="mb-0"><b>Fernando Gómez Pedraza</b></h6>
+                            <small class="text-white">Nombre del colaborador</small>
+                        </div>
+                    
+                        <div class="d-flex flex-column">
+                            <h6 class="mb-0">MX05989731</h6>
+                            <small class="text-white">Cedis Sur</small>
+                        </div>
+                    </div>
+                  
+                </div>
+                <div class="card-body px-0">
+                    <div class="row px-2" style="margin-top: -30px;">
+                        <div class="col-6 ">
+                          <div class="card d-flex flex-column text-center">
+                            <small class="c-red">Liga</small> 
+                            <span><b>A</b></span>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="card d-flex flex-column text-center">
+                            <small  class="c-red">Certificación</small> 
+                            <span class="text-success"><b>VIGENTE</b></span>
+                          </div>
+                        </div>
+                    </div>
+                  
+                    
+                </div>
+            </div>
+        </div> -->
+    </div>
+   
+   
+</div>

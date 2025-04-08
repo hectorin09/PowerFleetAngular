@@ -1,0 +1,33 @@
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a id="toggleSidebar" class="nav-link" routerLinkActive="active" (click)="toggleSidebar()" 
+    [attr.title]="'labelMenu' | translate">
+      <i class="fas" [ngClass]="true ? 'fa-solid fa-angles-right' : 'fa-bars'"></i> 
+      <span class="sidebar-text" *ngIf="!isSidebarCollapsed">{{ 'labelMenu' | translate }}</span>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="'/home'" routerLinkActive="active"
+       [attr.title]="'labelInicio' | translate">
+      <i class="fas fa-home"></i> 
+      <span class="sidebar-text" *ngIf="!isSidebarCollapsed">{{ 'labelInicio' | translate }}</span>
+    </a>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="'/RH'" routerLinkActive="active"
+       [attr.title]="'labelGR' | translate">
+      <i class="fa-solid fa-users-gear"></i> 
+      <span class="sidebar-text" *ngIf="!isSidebarCollapsed">{{ 'labelGR' | translate }}</span>
+    </a>
+  </li>
+  
+
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/services" [attr.title]="'labelBI' | translate"> 
+      <i class="fa-solid fa-chart-simple"></i> 
+      <span class="sidebar-text" *ngIf="!isSidebarCollapsed">{{ 'labelBI' | translate }}</span>
+    </a>
+  </li>
+</ul>

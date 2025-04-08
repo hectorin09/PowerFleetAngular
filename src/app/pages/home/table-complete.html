@@ -1,0 +1,132 @@
+<div class="row align-items-center">
+	<!-- Parte izquierda -->
+	<div class="col d-flex align-items-center">
+	  <!-- boton buscar para mobile -->
+	  <div class="row ">
+		<div class="col-xs-12">
+			<div class="d-flex d-md-none input-group mb-3 ">
+				<span class="input-group-text">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				  </span>
+				<input
+					id="table-complete-search"
+					type="text"
+					class="form-control"
+					name="searchTerm"
+					[(ngModel)]="service.searchTerm"
+					placeholder="Buscar"
+				/>
+				</div>
+				@if (service.loading$ | async) {
+					<span class="col col-form-label d-flex d-md-none">Loading...</span>
+				}
+			
+		</div>
+	 </div>
+	  <div class="btn-group" role="group">
+		<button type="button" class="btn d-inline-flex align-items-center justify-content-center dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+		  <i class="fa-solid fa-filter"></i>
+		</button>
+		<ul class="dropdown-menu p-3">
+		  <li>
+			<div class="form-check">
+			  <input class="form-check-input" type="checkbox" id="chkGravedad">
+			  <label class="form-check-label" for="chkGravedad">Gravedad</label>
+			</div>
+		  </li>
+		  <li>
+			<div class="form-check">
+			  <input class="form-check-input" type="checkbox" id="chkVehiculo">
+			  <label class="form-check-label" for="chkVehiculo">Vehículo</label>
+			</div>
+		  </li>
+		</ul>
+	  </div>
+	  <div class="me-1">
+		<button type="button" class="btn d-inline-flex align-items-center justify-content-center">
+		  <i class="fa-solid fa-rotate-right"></i>
+		</button>
+	  </div>
+
+				  
+	  <div class="d-none d-md-flex input-group w-25">
+		<span class="input-group-text">
+			<i class="fa-solid fa-magnifying-glass"></i>
+		  </span>
+		<input
+			id="table-complete-search"
+			type="text"
+			class="form-control"
+			name="searchTerm"
+			[(ngModel)]="service.searchTerm"
+			placeholder="Buscar"
+		/>
+	</div>
+	@if (service.loading$ | async) {
+		<span class="col col-form-label">Loading...</span>
+	}
+	</div>
+  
+	<!-- Parte derecha -->
+	<div class="col-auto ms-auto d-flex gap-2">
+	  <button
+		type="button"
+		class="btn d-inline-flex align-items-center justify-content-center">
+		<i class="fa-solid fa-download"></i>
+	  </button>
+	  <button type="button"  data-bs-toggle="modal" data-bs-target="#miModal" class="btn d-inline-flex align-items-center justify-content-center">
+		<i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+	  </button>
+
+	 
+	</div>
+  </div>
+
+<table class="table table-striped pt-2">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col" sortable="name" (sort)="onSort($event)">Gravedad</th>
+			<th scope="col" sortable="area" (sort)="onSort($event)">Fecha</th>
+			<th scope="col" sortable="population" (sort)="onSort($event)">Vehículo</th>
+			<th scope="col" sortable="grupo" (sort)="onSort($event)">Grupo</th>
+			<th scope="col" sortable="conductor" (sort)="onSort($event)">Conductor</th>
+			<th scope="col" sortable="tipo" (sort)="onSort($event)">Tipo</th>
+			<th scope="col" sortable="nombre" (sort)="onSort($event)">Nombre</th>
+			<th scope="col" sortable="description" (sort)="onSort($event)">Descripción</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (country of countries$ | async; track country.id) {
+			<tr>
+				<th scope="row">{{ country.id }}</th>
+				<td>
+				
+					<ngb-highlight [result]="country.name" [term]="service.searchTerm" />
+				</td>
+				<td><ngb-highlight [result]="country.area " [term]="service.searchTerm" /></td>
+				<td><ngb-highlight [result]="country.population" [term]="service.searchTerm" /></td>
+				<td><ngb-highlight [result]="country.grupo " [term]="service.searchTerm" /></td>
+				<td><ngb-highlight [result]="country.conductor " [term]="service.searchTerm" /></td>
+				<td><ngb-highlight [result]="country.tipo " [term]="service.searchTerm" /></td>
+				<td><ngb-highlight [result]="country.nombre " [term]="service.searchTerm" /></td>
+				<td><ngb-highlight [result]="country.description " [term]="service.searchTerm" /></td>
+			</tr>
+		} @empty {
+			<tr>
+				<td colspan="4" style="text-align: center">No alertas/ incidencias para mostrar</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+	<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+	</ngb-pagination>
+
+	<select class="form-select" style="width: auto;font-size: 0.9rem;" name="pageSize" [(ngModel)]="service.pageSize">
+		<option [ngValue]="2">2 registros por página</option>
+		<option [ngValue]="4">4 registros por página</option>
+		<option [ngValue]="6">6 registros por página</option>
+	</select>
+</div>

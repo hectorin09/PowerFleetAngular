@@ -1,0 +1,325 @@
+
+  /* Sidebar */
+  .coca-sidebar {
+    background-color: #ffffff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transition: width 0.3s ease;
+    height: 100vh;
+    overflow-y: hidden;
+    top: 0;
+    width: 250px; /* Ancho del sidebar expandido */
+  }
+  
+  
+  /* Estilo de los enlaces */
+  .nav-link {
+    // color: #001327;
+  color: #666666;  /* Cambia el color del icono */
+    font-size: 1rem;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+  
+  /* Estilo de los íconos */
+  .nav-link i {
+    font-size: 1.5rem;
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+    
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    background-color: #EAEBEF; /* Color de fondo al pasar el mouse */
+    color: #E4002B; /* Color de texto al pasar el mouse */
+  }
+  
+  /* Sidebar colapsado */
+  .coca-sidebar.collapsed {
+    width: 60px; /* Reducido aún más */
+    display: flex;
+    // justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    flex-direction: column; /* Asegura que los íconos se apilen de manera vertical */
+    
+    position: relative; /* Para controlar el posicionamiento de los íconos */
+  
+  }
+  
+  .coca-sidebar.collapsed .nav-link i {
+    font-size: 1.5rem;
+    margin-right: 0px; /* Espacio entre el ícono y el texto */
+    
+  }
+  
+  
+  /* En pantallas pequeñas (celulares), hacer que el sidebar ocupe el 100% del ancho */
+@media (max-width: 767px) {
+  .coca-sidebar {
+    width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+  }
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  // text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 1.125rem;
+ // color: #ff0000; /* Resalta con un color rojo para alertas */
+}
+
+.card i {
+  color: #666666;
+  margin-right: 8px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #666666;
+}
+
+.card-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #212529;
+}
+
+.card-icon {
+  font-size: 2rem;
+  color: #666666;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+
+.round{
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  background-color: rgb(244, 247, 254);
+  border-radius: 50%;
+}
+
+.round-y{
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  background-color:#FFFBF0;
+  border-radius: 50%;
+}
+.round-r{
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  background-color:#ffebe7;
+  border-radius: 50%;
+}
+
+
+.round-b{
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  background-color:#EEF4FF;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+.card-custom {
+  border-left: 5px solid #FFD700;
+  padding: 10px;
+  max-width: 400px;
+}
+.badge-severity {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.badge-low { background-color: #FFD700; }
+.badge-medium { background-color: #FFA500; }
+.badge-high { background-color: #FF0000; }
+.circular-progress {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 6px solid #FFD700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  position: relative;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+}
+
+.chart-container {
+  width: 100%; /* Se adapta al ancho de la columna Bootstrap */
+  height: auto; /* Evita que se deforme */
+  position: relative;
+}
+
+.grafico-bar canvas {
+  width: 100% !important; /* Asegura que el gráfico ocupe el espacio disponible */
+  height: 100% !important;
+}
+
+.main-content{
+  overflow-y: scroll;
+  // position: fixed;
+  max-height: 90vh;
+  // right: 0;
+  background-color: #FAFAFA;
+  flex-grow: 1; /* Ocupar todo el espacio disponible */
+}
+
+.chart-container .chart-legend {
+  display: none !important;
+}
+
+.text-link{
+  text-decoration: none;
+  color: #C80005;
+  margin-top: 0px;
+  line-height: 1.2;
+}
+
+.text-link:hover{
+  text-decoration: underline;
+  color: #C80005;
+}
+
+
+.btn-close {
+  font-size: 0.78rem; /* Ajusta este valor según lo que necesites */
+  // width: 1.2rem; /* Ajusta el tamaño del área clickeable */
+  // height: 1.2rem; /* Ajusta el tamaño del área clickeable */
+}
+
+.alert-dismissible .btn-close {
+  padding: 5px;
+}
+
+
+.table-container {
+  max-height: 400px; /* Ajusta la altura según tus necesidades */
+  overflow-y: auto;
+}
+
+// /* Cambiar el color de las filas impares */
+// .table-striped tbody tr:nth-of-type(odd) {
+//   background-color:#f8f9fa !important; /* Gris claro para las filas impares */
+// }
+
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-accent-bg: #F8F9FA;
+}
+
+.footer {
+  // background-color: #f8f9fa;
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 14px;
+  color:#969191;
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.custom-btn {
+  color: #F40009 !important;
+  border-color: #F40009 !important;
+}
+
+.custom-btn:hover, 
+.custom-btn:active, 
+.btn-check:checked + .custom-btn {
+  background-color: #F40009 !important;
+  color: white !important;
+}
+
+.form-check-input:checked {
+  background-color: #F40009;
+  border-color: #F40009;
+}
+
+.form-check-input:focus {
+  border-color: #F40009;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(244, 0, 9, 0.25)
+}
+/* Estado de foco */
+.form-control:focus {
+  border-color: #F40009;
+  box-shadow: 0 0 0 0.25rem rgba(244, 0, 9, 0.25);
+}
+
+
+#centerText{
+  padding-top:10px !important
+}
+
+// dark mode sidebar 
+.dark-mode .coca-sidebar{
+  background-color: #494949;
+  color: #eeeeef !important;
+}
+
+//dark mode  content
+.dark-mode .main-content{
+  background-color: #494949;
+  color: #9fa6bc !important;
+}
+
+.dark-mode .nav-link {
+  color: #c4c1c1 !important;
+}
+
+
+.dark-mode .nav-link:hover,
+.dark-mode .nav-link.active {
+  background-color: #666666; /* Color de fondo al pasar el mouse */
+  color: #E4002B; /* Color de texto al pasar el mouse */
+}

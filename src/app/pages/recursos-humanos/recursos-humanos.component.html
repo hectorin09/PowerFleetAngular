@@ -1,0 +1,74 @@
+<div class="row "  [ngClass]="{'dark-mode': isDarkMode, 'bg-content': !isDarkMode}">
+    <!-- Sidebar -->
+    <div [ngClass]="{'coca-sidebar': true, 'collapsed': isSidebarCollapsed}" id="sidebar" class=" sidebar coca-sidebar px-0 d-none d-md-flex flex-column">
+      <app-sidebar (isSidebarCollapsedChange)="onSidebarToggled($event)" [isSidebarCollapsed]="false" [isDarkMode]="isDarkMode" ></app-sidebar>
+    </div> 
+    
+    <!-- <div [ngClass]="{'coca-sidebar': true, 'collapsed': isSidebarCollapsed}" id="sidebar" class=" sidebar coca-sidebar px-0 d-none d-md-flex flex-column">
+      <ul class="nav flex-column" >
+        <li class="nav-item" >
+          <a id="toggleSidebar" class="nav-link "  routerLinkActive="active" (click)="toggleSidebar()" placement="end" ngbTooltip="Cerrar menú">
+            <i class="fas" [ngClass]="isSidebarCollapsed ? 'fa-solid fa-angles-right' : ' fa-bars'"></i> <span class="sidebar-text" *ngIf="!isSidebarCollapsed" >  {{ 'labelMenu' | translate }}</span>
+          </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link  nav-link2 active" routerLink="/"  placement="end"  ngbDropdownToggle ngbTooltip="Inicio">
+            <i class="fas fa-home"></i> <span class="sidebar-text" *ngIf="!isSidebarCollapsed" > {{ 'labelInicio' | translate }}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  (click)="navigateToHome()"  placement="end" ngbTooltip="Gestión de Recursos">
+            <i class="fa-solid fa-users-gear"></i> <span class="sidebar-text" *ngIf="!isSidebarCollapsed"> {{ 'labelGR' | translate }} </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/services"  placement="end" ngbTooltip="BI">
+            <i class="fa-solid fa-chart-simple"></i> <span class="sidebar-text" *ngIf="!isSidebarCollapsed"> {{ 'labelBI' | translate }}</span>
+          </a>
+        </li>
+      </ul>
+    </div> -->
+    
+    <!-- Main Content -->
+  
+    <div id="mainContent" class="main-content container-fluid"
+    [ngClass]="{'col-md-11': isSidebarCollapsed, 'col-md-10': !isSidebarCollapsed}">
+    <div class="container-fluid pt-2">
+        <div class="row"> 
+            <div class="col-md-12">
+                <h3 class="mb-0">{{ 'labelTitleGR' | translate }}</h3>
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" routerLink="/home" aria-current="page">{{ 'breadPageAlertInicio' | translate }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ 'breadPageGH' | translate }}</li>
+                </ol>
+                </nav>
+            </div>
+
+            <div class="card p-2 mt-2">
+                <div class="row ">
+                  <div class="col-md-12 col-xs-12">
+                    <h3 class="mt-2 px-2" style="font-size: 1rem;font-weight: bold;color:#666666">{{ 'titleListOpera' | translate }}</h3>
+                  </div>
+                </div>
+                <div class="col-md-12 col-xs-12  pt-2 pb-2">
+                    <ngbd-table-completeRH></ngbd-table-completeRH>      
+
+                </div> 
+              </div>
+          
+           
+        </div>
+    </div>
+    <footer class="container">
+      <div class="row">
+        <div class="col-md-12 footer">
+          <p>&copy; {{ 'labelderechos' | translate }}</p>
+        </div>
+      </div>
+    </footer>
+   </div>
+  
+  </div>
+  
+  

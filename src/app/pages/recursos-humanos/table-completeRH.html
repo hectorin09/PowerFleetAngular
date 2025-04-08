@@ -1,0 +1,533 @@
+<form class="h-100 d-flex flex-column">
+	<div class="flex-grow-1 d-flex flex-column">
+				<!-- boton buscar para mobile -->
+				<div class="row ">
+					<div class="col-xs-12">
+						<div class="d-flex d-md-none input-group mb-3 ">
+							<span class="input-group-text">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							  </span>
+							<input
+								id="table-complete-search"
+								type="text"
+								class="form-control"
+								name="searchTerm"
+								[(ngModel)]="service.searchTerm"
+								placeholder="Buscar"
+							/>
+							</div>
+							@if (service.loading$ | async) {
+								<span class="col col-form-label">Loading...</span>
+							}
+						
+					</div>
+				 </div>
+	<div class="row align-items-center" >
+		<!-- Parte izquierda -->
+		<div class="col d-flex align-items-center">
+			<button
+			*ngIf="selectedItems.length > 0"
+			type="button"
+			data-bs-toggle="modal" 
+			data-bs-target="#mdDelete"
+			class="btn d-inline-flex align-items-center justify-content-center text-danger"
+			>
+			<i class="fas fa-trash-alt"></i>
+		  </button>
+		  <div class="btn-group" role="group">
+			<button type="button" class="btn d-inline-flex align-items-center justify-content-center dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+			  <i class="fa-solid fa-filter"></i>
+			</button>
+			<ul class="dropdown-menu p-3">
+			  <li>
+				<div class="form-check">
+				  <input class="form-check-input" type="checkbox" id="chkGravedad">
+				  <label class="form-check-label" for="chkGravedad">Gravedad</label>
+				</div>
+			  </li>
+			  <li>
+				<div class="form-check">
+				  <input class="form-check-input" type="checkbox" id="chkVehiculo">
+				  <label class="form-check-label" for="chkVehiculo">Vehículo</label>
+				</div>
+			  </li>
+			</ul>
+		  </div>
+		  <div class="me-1">
+			
+			<button type="button" class="btn d-inline-flex align-items-center justify-content-center">
+			  <i class="fa-solid fa-rotate-right"></i>
+			</button>
+		  </div>
+
+		  <!-- boton buscar para desktop -->
+		  <div class="d-none d-md-flex input-group w-25">
+			<span class="input-group-text">
+				<i class="fa-solid fa-magnifying-glass"></i>
+			  </span>
+			<input
+				id="table-complete-search"
+				type="text"
+				class="form-control"
+				name="searchTerm"
+				[(ngModel)]="service.searchTerm"
+				placeholder="Buscar"
+			/>
+			</div>
+			@if (service.loading$ | async) {
+				<span class="col col-form-label">Loading...</span>
+			}
+		</div>
+
+		
+	  
+		<!-- Parte derecha -->
+		<div class="col-auto ms-auto d-flex gap-2">
+			<div class="me-1">
+				<!-- boton para desktop -->
+				<button data-bs-toggle="modal" data-bs-target="#addConductor" type="button" class="d-none d-md-flex btn btn-red-femsa d-inline-flex align-items-center justify-content-center">
+					<i class="fa-solid fa-circle-plus me-2"></i> Agregar Conductor
+				</button>
+				<button data-bs-toggle="modal" data-bs-target="#addConductor" type="button" class="d-flex d-md-none btn btn-red-femsa d-inline-flex align-items-center justify-content-center">
+					<i class="fa-solid fa-circle-plus"></i> 
+				</button>
+			  </div>
+			  <button
+				type="button"
+				placeholder="Exportar a PDF"
+				class="btn d-inline-flex align-items-center justify-content-center">
+				<i class="fas fa-file-pdf"></i>
+			 </button>
+				<button
+					type="button"
+					class="btn d-inline-flex align-items-center justify-content-center">
+					<i class="fa-solid fa-download"></i>
+				</button>
+		</div>
+	</div>
+	<div class="row flex-grow-1 d-flex">
+		<div class="col-md-12 d-flex flex-column">
+			<div class="table-responsive  flex-grow-1 d-flex flex-column">
+				<table class="table-container table table-striped pt-3 mt-2 flex-grow-1" >
+					<thead>
+						<tr>
+							<th><input type="checkbox" ></th>
+							<th scope="col">ID</th>
+							<th scope="col" sortable="name" (sort)="onSort($event)">ID Colaborador</th>
+							<th scope="col" sortable="area" (sort)="onSort($event)">Nombre del Colaborador</th>
+							<th scope="col" sortable="population" (sort)="onSort($event)">Base</th>
+							<th scope="col" sortable="grupo" (sort)="onSort($event)">Zona</th>
+							<th scope="col" sortable="conductor" (sort)="onSort($event)">Región</th>
+							<th scope="col" sortable="tipo" (sort)="onSort($event)">Unidad Operativa</th>
+							<th scope="col" sortable="nombre" (sort)="onSort($event)">Tipo de Certificación</th>
+							<th scope="col" sortable="description" (sort)="onSort($event)">Tipo de Vehículo</th>
+							<th scope="col" sortable="calificacion" (sort)="onSort($event)">Calificación teórica</th>
+							<th scope="col" sortable="cpractica" (sort)="onSort($event)">Calificación práctica (entre 0-10)</th>
+							<th scope="col" sortable="tipoL" (sort)="onSort($event)">Tipo de licencia</th>
+							<th scope="col" sortable="certificacion" (sort)="onSort($event)">Certificación DC3</th>
+							<th scope="col" style="width: 100px;">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for (country of countries$ | async; track country.id) {
+							<tr>
+								<td><input type="checkbox" (change)="toggleSelection($event, country)"></td>
+								<th scope="row">{{ country.id }}</th>
+								
+								<td>
+								
+									<ngb-highlight [result]="country.name" [term]="service.searchTerm" />
+								</td>
+								<td><ngb-highlight [result]="country.area " [term]="service.searchTerm" /></td>
+								<td><ngb-highlight [result]="country.population " [term]="service.searchTerm" /></td>
+								<td><ngb-highlight [result]="country.grupo " [term]="service.searchTerm" /></td>
+								<td><ngb-highlight [result]="country.conductor " [term]="service.searchTerm" /></td>
+								<td><ngb-highlight [result]="country.tipo " [term]="service.searchTerm" /></td>
+								<td><ngb-highlight [result]="country.nombre " [term]="service.searchTerm" /></td>
+								<td><ngb-highlight [result]="country.cpractica " [term]="service.searchTerm" /></td>
+								<td><ngb-highlight [result]="country.description " [term]="service.searchTerm" /></td>
+								<td><ngb-highlight [result]="country.calificacion " [term]="service.searchTerm" /></td>
+								<td><ngb-highlight [result]="country.tipoL " [term]="service.searchTerm" /></td>
+								<td><ngb-highlight [result]="country.certificacion " [term]="service.searchTerm" /></td>
+								<td >
+									<button class="btn btn-sm btn-primary me-1" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar">
+										<i class="fas fa-edit"></i>
+									</button>
+									<button class="btn btn-sm btn-danger" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar" >
+										<i class="fas fa-trash-alt"></i>
+									</button>
+								</td>
+							</tr>
+						} @empty {
+							<tr>
+								<td colspan="4" style="text-align: center">No alertas/ incidencias para mostrar</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			
+				<div class=" d-flex justify-content-between p-2">
+					<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+					</ngb-pagination>
+			
+					<select class="form-select" style="width: auto;font-size: 0.9rem;" name="pageSize" [(ngModel)]="service.pageSize">
+						<option [ngValue]="2">2 registros por página</option>
+						<option [ngValue]="4">4 registros por página</option>
+						<option [ngValue]="6">6 registros por página</option>
+						<option [ngValue]="8">8 registros por página</option>
+					</select>
+				</div>
+		</div>
+	</div>
+</div>
+</div>
+</form>
+
+<!-- modal add conductor -->
+<div class="modal fade" id="addConductor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog  modal-xl">
+	  <div class="modal-content">
+		<div class="modal-header">
+			<h1 class="modal-title fs-5" id="staticBackdropLabel">Registrar Conductor</h1>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		  </div>
+		<div class="modal-body h-modal" >
+			<div class="container mt-2">
+				<!-- Píldoras de navegación (steps) en orientación vertical -->
+				<div class="row">
+					<div class="col-md-3">
+				  <div class="nav flex-column nav-pills me-3 step-link" id="v-pills-tab" role="tablist">
+					<div class="nav-item">
+					  <a class="nav-link active" id="step1-tab" data-bs-toggle="pill" href="#step1" role="tab" aria-controls="step1" aria-selected="true">
+						<i class="fa-solid fa-user"></i> Datos del Operador
+					  </a>
+					</div>
+					<div class="nav-item">
+					  <a class="nav-link" id="step2-tab" data-bs-toggle="pill" href="#step2" role="tab" aria-controls="step2" aria-selected="false">
+						<i class="fa-solid fa-certificate"></i> Información de Certificación
+					  </a>
+					</div>
+					<div class="nav-item">
+					  <a class="nav-link" id="step3-tab" data-bs-toggle="pill" href="#step3" role="tab" aria-controls="step3" aria-selected="false">
+						<i class="fa-solid fa-car"></i> Detalles del Vehículo
+					  </a>
+					</div>
+					<div class="nav-item">
+					  <a class="nav-link" id="step4-tab" data-bs-toggle="pill" href="#step4" role="tab" aria-controls="step4" aria-selected="false">
+						<i class="fa-regular fa-id-card"></i> Licencia de Conducir
+					  </a>
+					</div>
+					<div class="nav-item">
+					  <a class="nav-link" id="step5-tab" data-bs-toggle="pill" href="#step5" role="tab" aria-controls="step5" aria-selected="false">
+						<i class="fa-solid fa-clock-rotate-left"></i> Historial y Usuarios Responsables
+					  </a>
+					</div>
+				  </div>
+				</div>
+			  
+				  <!-- Contenido de los pasos -->
+				   <div class="col-md-9">
+				  <div class="tab-content ">
+					<div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step1-tab">
+					  <h5>Datos del Operador</h5>
+					  <h6 class="subtitle-step">Información básica sobre el conductor</h6>
+									
+					<!-- form.component.html -->
+
+					<div class="container mt-3">
+						<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+							<div class="row">
+								<div class="col-md-6 px-4 ">
+						
+									
+									<!-- Nombre Completo -->
+									<div class="mb-3">
+										<label for="fullName" class="form-label">Nombre Completo</label>
+										<input type="text" id="fullName" class="form-control" required [(ngModel)]="model.fullName" name="fullName">
+									</div>
+
+									<!-- ID ASER -->
+									<div class="mb-3">
+										<label for="idAser" class="form-label">ID ASER</label>
+										<input type="number" id="idAser" class="form-control" required [(ngModel)]="model.idAser" name="idAser">
+									</div>
+
+									<!-- ID Colaborador -->
+									<div class="mb-3">
+										<label for="idColaborador" class="form-label">ID Colaborador</label>
+										<input type="number" id="idColaborador" class="form-control" required [(ngModel)]="model.idColaborador" name="idColaborador">
+									</div>
+								
+								</div>
+								<div class="col-md-6 ">
+									
+									
+									<label for="photo" class="form-label me-2">Foto</label>
+									<div class="mb-3 d-flex align-items-center">
+										<i class="fa-solid fa-circle-user me-2" style="font-size: 60px;color:#666666"></i>
+										
+										<input type="file" id="photo" (change)="onFileChange($event)" hidden #fileInput>
+										<button type="button" class="btn btn-outline-secondary" (click)="fileInput.click()">{{ fileName || 'Subir foto' }}</button>
+										<span *ngIf="fileName">{{ fileName }}</span> 
+										<!-- Botón para eliminar la foto (inicialmente oculto) -->
+											<button type="button" class="btn btn-danger ms-2" >
+												<i class="fas fa-trash-alt"></i>
+											</button>
+									</div>
+									
+								
+								<!-- Zona -->
+								<div class="mb-3">
+									<label for="zona" class="form-label">Zona</label>
+									<div class="input-group">
+										<span class="input-group-text"><i class="fa-solid fa-globe"></i></span>
+										<select class="form-control">
+										  <option value="es">Zona VDM</option>
+										  <option value="en">Zona Sureste</option>
+										  <option value="en">Zona Pacifico</option>
+										</select>
+									  </div>
+									
+									
+								</div>
+							
+								<!-- Región (dependiente de la Zona) -->
+								<div class="mb-3">
+									<label for="region" class="form-label">Región</label>
+									<div class="input-group">
+										<span class="input-group-text"><i class="fa-solid fa-globe"></i></span>
+										<select class="form-control">
+										  <option value="es">Zona VDM</option>
+										  <option value="en">Zona Sureste</option>
+										  <option value="en">Zona Pacifico</option>
+										</select>
+									  </div>
+								</div>
+							
+								<!-- Unidad Operativa (dependiente de la Región) -->
+								<div class="mb-3" >
+									<label for="unidadOperativa" class="form-label">Unidad Operativa</label>
+									<div class="input-group">
+										<span class="input-group-text"><i class="fa-solid fa-globe"></i></span>
+										<select class="form-control">
+										  <option value="es">Zona VDM</option>
+										  <option value="en">Zona Sureste</option>
+										  <option value="en">Zona Pacifico</option>
+										</select>
+									  </div>
+									
+								</div>
+							
+							</div>
+						
+
+								</div>
+						</form>
+					</div>
+					
+					</div>
+					<div class="tab-pane fade" id="step2" role="tabpanel" aria-labelledby="step2-tab">
+					  <h5>Información de Certificación</h5>
+					  <h6 class="subtitle-step"> Registro de la certificación y observaciones</h6>
+					  <div class="container mt-3">
+						<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+							<div class="row">
+								<div class="col-md-4">
+									<!-- Nombre Completo -->
+						<div class="mb-3">
+							<label for="fullName" class="form-label">Tipo de Certificación</label>
+							<div class="input-group">
+								<select class="form-control">
+								  <option value="es">Recertificación</option>
+								  <option value="en">Certificación</option>
+								  <option value="en">Base 0</option>
+								</select>
+							  </div>
+						</div>
+					
+						<!-- ID ASER -->
+						<div class="mb-3">
+							<label for="idAser" class="form-label">Fecha de Examen Práctico </label>
+							<div class="input-group">
+								<input
+									class="form-control"
+									placeholder="yyyy-mm-dd"
+									name="dp"
+									[(ngModel)]="model"
+									ngbDatepicker
+									#d="ngbDatepicker"
+								/>
+								<button class="btn btn-outline-secondary fas fa-calendar" (click)="d.toggle()" type="button"></button>
+							</div>
+						</div>
+						<div class="form-check mb-3">
+							<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+							<label class="form-check-label" for="flexCheckDefault">
+								Certificación DC3 
+							</label>
+						  </div>
+								</div>
+							</div>
+						
+						<!-- Zona -->
+						<div class="row">
+							<div class="col-md-12">
+							<div class="mb-3">
+								<label for="zona" class="form-label">Observaciones </label>
+								<textarea class="form-control vh-50" placeholder="Ingrese las observaciones" id="floatingTextarea"></textarea>
+							</div>
+						</div>
+						</div>
+						</form>
+					</div>
+					</div>
+					<div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step3-tab">
+					  <h5>Detalles del Vehículo</h5>
+					  <h6 class="subtitle-step">Asignación del tipo de vehículo.</h6>
+					  <div class="container mt-3">
+						<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+							<div class="row">
+								<div class="col-md-4">
+								<!-- Nombre Completo -->
+								<div class="mb-3">
+									<label for="fullName" class="form-label">Tipo de Vehículo </label>
+									<div class="input-group">
+										<select class="form-control">
+										<option value="es">Camión pesado</option>
+										<option value="en">Montacarga eléctrico</option>
+										<option value="en">Hombre a pie</option>
+										</select>
+									</div>
+								</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					</div>
+					<div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step4-tab">
+					  <h5>Licencia de Conducir</h5>
+					  <h6 class="subtitle-step">Datos de la licencia y vigencia</h6>
+					  <div class="container mt-3">
+						<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+							<div class="row">
+								<div class="col-md-4">
+	<!-- Nombre Completo -->
+	<div class="mb-3">
+		<label for="fullName" class="form-label">Fecha de Vencimiento de Licencia</label>
+		<div class="input-group">
+			<input
+				class="form-control"
+				placeholder="yyyy-mm-dd"
+				name="dp"
+				[(ngModel)]="model"
+				ngbDatepicker
+				#d="ngbDatepicker"
+			/>
+			<button class="btn btn-outline-secondary fas fa-calendar" (click)="d.toggle()" type="button"></button>
+		</div>
+	</div>
+								</div>
+							</div>
+					
+						</form>
+					</div>
+					</div>
+					<div class="tab-pane fade" id="step5" role="tabpanel" aria-labelledby="step5-tab">
+					  <h5>Historial y Usuarios Responsables</h5>
+					  <h6 class="subtitle-step">Control de auditoría y gestión de registros</h6>
+					  <div class="container mt-3">
+						<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+							<div class="row">
+								<div class="col-md-4">
+									<label for="fullName" class="form-label">Estatus de conductor</label>
+									<!-- Nombre Completo -->
+									<div class="mb-3">
+										
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+											<label class="form-check-label" for="inlineCheckbox1">Activo</label>
+										  </div>
+										  <div class="form-check form-check-inline">
+											<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+											<label class="form-check-label" for="inlineCheckbox2">Inactivo</label>
+										  </div>
+										
+									</div>
+								
+									<!-- ID ASER -->
+									<div class="mb-3">
+										<label for="idAser" class="form-label">Creado por</label>
+										<input type="number" id="idAser" class="form-control" required [(ngModel)]="model.idAser" name="idAser" disabled>
+									</div>
+								
+									<!-- ID Colaborador -->
+									<div class="mb-3">
+										<label for="idColaborador" class="form-label">Fecha de Creación</label>
+										<div class="input-group">
+											<input
+												class="form-control"
+												placeholder="yyyy-mm-dd"
+												name="dp"
+												[(ngModel)]="model"
+												ngbDatepicker
+												#d="ngbDatepicker"
+											/>
+											<button class="btn btn-outline-secondary fas fa-calendar" (click)="d.toggle()" type="button"></button>
+										</div>
+									</div>
+								
+									<!-- Zona -->
+									<div class="mb-3">
+										<label for="zona" class="form-label">Modificado por </label>
+										<input type="number" id="idAser" class="form-control" required [(ngModel)]="model.idAser" name="idAser" disabled>
+									</div>
+								
+									<!-- Región (dependiente de la Zona) -->
+									<div class="mb-3" *ngIf="selectedZone">
+										<label for="region" class="form-label">Fecha de Modificación </label>
+										
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					
+					</div>
+				  </div>
+				</div>
+				</div>
+			  </div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-block btn-outline-secondary d-inline-flex align-items-center justify-content-center">
+				Cancelar
+			  </button>
+			<button type="button" class="btn btn-red-femsa" >Guardar</button>
+		  </div>
+	  </div>
+	</div>
+  </div>
+
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="mdDelete" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header text-white">
+		  <h5 class="modal-title" id="confirmDeleteLabel">Confirmar Eliminación</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+		</div>
+		<div class="modal-body text-center">
+			<div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+				<i class="fas fa-exclamation-triangle card-icon round-r me-3" style="color: #E4002B; font-size: 2rem;"></i>
+			  </div>
+		  <h4>Eliminar registro</h4>
+		  <p>Estás a punto de eliminar <b>2</b> registros. ¿Estás seguro de que deseas continuar?</p>
+		</div>
+		<div class="modal-footer d-flex justify-content-center align-items-center">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, mantener</button>
+		  <button type="button" class="btn btn-red-femsa" id="confirmDeleteBtn">Sí, eliminar</button>
+		</div>
+	  </div>
+	</div>
+  </div>

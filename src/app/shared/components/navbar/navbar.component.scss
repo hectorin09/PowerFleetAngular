@@ -1,0 +1,89 @@
+/* Estilo de la barra de navegación con colores de Coca-Cola */
+.coca-navbar {
+    background-color: #F40009; /* Rojo característico de Coca-Cola */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100; /* Asegura que el navbar esté por encima del sidebar */
+  }
+  
+  /* Estilo del texto del logo */
+  .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  
+  /* Estilo de los enlaces de navegación */
+  .nav-link {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff !important;
+    // transition: color 0.3s ease;
+    padding: 10px 15px; /* Mantén el padding fijo */
+  }
+  .nav-link i {
+    font-size:  1.375rem;
+      
+  }
+  
+  /* Cambia el color al pasar el mouse */
+  .nav-link:hover {
+    color: #fff; /* o cualquier color elegido */
+    background-color: #FA2D3C;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 10px rgba(250, 45, 60, 0.4); /* Sombra suave sobresaliente */
+  transition: all 0.3s ease-in-out; /* Efecto de transición suave */
+  // padding: 10px 20px; /* Espaciado interno para separación */
+  }
+  
+  /* Ajustes en la versión móvil */
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+    padding: 10px; /* Ajusta el tamaño del botón */
+    font-size: 24px; /* Asegúrate de que el ícono sea visible */
+    z-index: 999; 
+  }
+  
+  .navbar-toggler-icon {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .flag-icon {
+    width: 22px;  /* Ajusta el tamaño */
+    height: 22px; /* Mantiene la relación de aspecto */
+  }
+
+
+
+  .dot-green{
+    background-color: #57D163 !important;
+  }
+
+
+//modo dark
+
+/* Modo Oscuro */
+/* Estilo para el fondo oscuro en el modo oscuro */
+.dark-mode {
+  background-color: #5d5a5a;
+  color: #9fa6bc !important;
+}
+
+.dark-mode.nav-link.active{
+  background-color:#5e5e5e !important;
+  color:#676161 !important
+}
+
+/* Ajustes en los íconos para modo oscuro */
+.dark-mode .nav-link {
+  color: #9fa6bc !important;
+}
+
+.dark-mode .text-white{
+  color: #9fa6bc !important;
+}
+
+.dark-mode .coca-navbar {
+  background-color: #494949;
+  color: #9fa6bc !important;
+}
